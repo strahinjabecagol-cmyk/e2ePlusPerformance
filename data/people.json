@@ -1,0 +1,27 @@
+{
+    "snesko": {
+        "name": "Snesko",
+        "address": "ColdStreet 999",
+        "city": "Cold town",
+        "state": "Cold state",
+        "zipCode": "99999",
+        "cardType": "amex",
+        "cardNumber": "123456789023456",
+        "expirationMonth": "12",
+        "espirationYear": "2025",
+        "nameOnCard": "Snesko Belic"
+
+    },
+    "johnDoe": {
+        "name": "John Doe",
+        "address": "MainStreet 123",
+        "city": "Sample city",
+        "state": "Sample state",
+        "zipCode": "12345",
+        "cardType": "visa",
+        "cardNumber": "4111111111111111",
+        "expirationMonth": "10",
+        "espirationYear": "2024",
+        "nameOnCard": "John Doe"
+    }
+}

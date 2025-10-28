@@ -21,6 +21,12 @@ export class FlightDetailsPage extends BasePom {
 
     }
 
+    async fillNameOnCard(name: string) {
+        await this.page.getByRole('textbox', { name: 'Name on Card' }).fill(name);
+
+    }
+
+
     async selectAmexType() {
             await this.page.locator('#cardType').selectOption('amex');
     }
