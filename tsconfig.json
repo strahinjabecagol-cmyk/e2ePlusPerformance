@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "CommonJS",
+    "target": "es6",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -9,11 +9,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "outDir": "dist",
-    "types": ["node", "@playwright/test"]
+    "types": [
+      "node",
+      "@playwright/test"
+    ]
   },
   "include": [
     "tests/**/*.ts",
     "playwright.config.ts"
   ]
 }
-

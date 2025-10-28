@@ -15,7 +15,9 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.56.1"
+    "@playwright/test": "^1.56.1",
+    "artillery": "^2.0.26",
+    "artillery-engine-playwright": "^1.23.0"
   },
   "dependencies": {
     "jimp": "^1.6.0",
