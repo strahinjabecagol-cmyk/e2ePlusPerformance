@@ -1,9 +1,13 @@
 import { Page } from '@playwright/test';
-import { type Config, type Scenario } from 'artillery';
-import { helloWorld } from './artilleryComands/processor';
+import { type Config, type Scenario as BaseScenario } from 'artillery';
+import { createFlightForSneskoBelic } from './artilleryComands/processor';
+
+interface Scenario extends BaseScenario {
+  custom?: Record<string, any>;
+}
 
 export const config: Config = {
-    target: 'https://www.artillery.io',
+    target: 'https://blazedemo.com/',
     engines: {
         playwright: {
             // Enable Playwright trace recording
@@ -26,28 +30,32 @@ export const config: Config = {
             duration: 10,
             arrivalRate: 1
         },
-        {
-            name: "pause",
-            pause: 5
-        },
-        {
-            name: "rampUp",
-            duration: 10,
-            arrivalRate: 5,
-            rampTo: 5
-        },
-        {
-            name: "fixedArrival",
-            duration: 10,
-            arrivalRate: 5
-        }
+        // {
+        //     name: "pause",
+        //     pause: 5
+        // },
+        // {
+        //     name: "rampUp",
+        //     duration: 10,
+        //     arrivalRate: 5,
+        //     rampTo: 5
+        // },
+        // {
+        //     name: "fixedArrival",
+        //     duration: 10,
+        //     arrivalRate: 5
+        // }
 
 
     ]
 };
 
 export const scenarios: Scenario[] = [{
+    name: 'Create Flight For Snesko Belic',
     engine: 'playwright',
-    testFunction: helloWorld
+    custom: {
+        testName: 'Create_Flight_For_Snesko_Belic'
+    },
+    testFunction: createFlightForSneskoBelic
 }];
 

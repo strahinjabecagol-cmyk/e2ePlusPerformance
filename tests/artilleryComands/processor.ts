@@ -5,21 +5,24 @@ import { FlightsListPage } from "../../pom/flightsListPage.pom";
 import { FlightDetailsPage } from "../../pom/flightDetailsPage.pom";
 import { ConfirmationPage } from "../../pom/confirmationpPage.pom";
 import people from "../../data/people.json";
+import { PlaywrightEngineTestParam, VUContext, VUEvents } from 'artillery';
+import { emitTestNameOnce } from '../../utilities/emitTestNameOnce';
 
-async function helloWorld({ page }: { page: Page }) {
+async function helloWorld(page: Page, vuContext: VUContext, events: VUEvents, test: PlaywrightEngineTestParam) {
 
+    emitTestNameOnce(events, vuContext);
     await page.goto('https://www.artillery.io/');
     await page.click('text=Docs');
 
 }
 
-async function createFlightForSneskoBelic({ page }: { page: Page }) {
+async function createFlightForSneskoBelic(page: Page, vuContext: VUContext, events: VUEvents, test: PlaywrightEngineTestParam) {
 
     const welcomePage = new WelcomePage(page, expect);
     const flightsListPage = new FlightsListPage(page, expect);
     const flightDetailsPage = new FlightDetailsPage(page, expect);
     const confirmationPage = new ConfirmationPage(page, expect);
-
+    emitTestNameOnce(events, vuContext);
     await welcomePage.goto();
     await welcomePage.waitForPageToLoad();
     await welcomePage.selectStartingPointParis();
@@ -41,4 +44,5 @@ async function createFlightForSneskoBelic({ page }: { page: Page }) {
     await flightDetailsPage.purchaseFlight();
     expect(await confirmationPage.getPageTitle()).toBe("Thank you for your purchase today!");
 }
-export { helloWorld };
+export { createFlightForSneskoBelic };
+
