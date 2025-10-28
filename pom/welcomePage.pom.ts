@@ -4,6 +4,7 @@ import { BasePom } from "./base.pom";
 export class WelcomePage extends BasePom {
 
 
+
     constructor(page: Page, expect: Expect) {
         super(page, expect);
         this.url = 'https://blazedemo.com/index.php';
@@ -18,8 +19,18 @@ export class WelcomePage extends BasePom {
 
     }
 
+   async selectStartingPointBoston() {
+       await this.page.locator('select[name="fromPort"]').selectOption('Boston');
+
+    }
+
+    async selectDestinationCairo() {
+       await this.page.locator('select[name="toPort"]').selectOption('Cairo');
+
+    }
+
     async clickFindFlights() {
         await this.page.getByRole('button', { name: 'Find Flights' }).click();
-        
+
     }
 }
