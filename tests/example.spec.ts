@@ -1,12 +1,26 @@
 import { test, expect } from "../baseTest";
 
-test('homepage has title and links to intro docs', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Book a flight From Paris to Berlin', async ({ welcomePage, flightsListPage, flightDetailsPage,confirmationPage }) => {
+  await welcomePage.goto();
+  await welcomePage.waitForPageToLoad();
+  await welcomePage.selectStartingPointParis();
+  await welcomePage.selectDestinationBerlin();
+  await welcomePage.clickFindFlights();
+  await flightsListPage.waitForPageToLoad();
+  expect(await flightsListPage.getPageTitle()).toBe("Flights from Paris to Berlin: ");
+  await flightsListPage.selectAflight();
+  await flightDetailsPage.fillName('Snesko');
+  await flightDetailsPage.fillAddress('coldStreet 999');
+  await flightDetailsPage.fillCity('cold town');
+  await flightDetailsPage.fillState('cold state');
+  await flightDetailsPage.fillZipCode('9999');
+  await flightDetailsPage.selectAmexType();
+  await flightDetailsPage.fillCreditCardNumber('12345678909876');
+  await flightDetailsPage.fillCardMonth('12');
+  await flightDetailsPage.fillCardYear('2029');
+  await flightDetailsPage.fillName('Snesko Belic');
+  await flightDetailsPage.purchaseFlight();
+  expect(await confirmationPage.getPageTitle()).toBe("Thank you for your purchase today!");
 
-  await expect(page).toHaveTitle(/Playwright/);
-
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  await expect(page).toHaveURL(/.*docs/);
 });
 
